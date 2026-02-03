@@ -1,0 +1,2 @@
+# Calculator
+This is a simple calculator project made for the purpose of completing the Foundations course as part of The Odin Project's full stack web development curriculum. It demonstrates a strong understanding of HTML, CSS, and JavaScript.
