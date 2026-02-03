@@ -12,6 +12,7 @@ button {
 }
 
 input {
+    text-align: right;
     font-size: 48px;
     width: 372px;
     height: 100px;
