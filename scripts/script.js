@@ -37,3 +37,21 @@ function divide(a, b) {
     }
     return a / b;
 }
+
+buttons.addEventListener("click", function(e) {
+    if (!(e.target.classList[0] === "buttons" ||
+        e.target.classList[0] === "clear-buttons" ||
+        e.target.classList[0] === "nums-and-ops" ||
+        e.target.classList[0] === "button-row" ||
+        e.target.textContent === "/" ||
+        e.target.textContent === "x" ||
+        e.target.textContent === "-" ||
+        e.target.textContent === "+" ||
+        e.target.textContent === "=" ||
+        e.target.textContent === "AC" ||
+        e.target.textContent === "DEL")
+    ) {
+        num1 += e.target.textContent;
+    }
+    display.value = num1;
+});
