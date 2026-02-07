@@ -4,6 +4,7 @@ let operator = "";
 
 const display = document.querySelector("input");
 const buttons = document.querySelector(".buttons");
+const decimalPointBtn = document.querySelector(".dp-button");
 
 function operate(operator, num1, num2) {
     switch (operator) {
@@ -109,4 +110,11 @@ buttons.addEventListener("click", function(e) {
         num1 = num1ToArray.join("");
         display.value = num1;
     }
+
+    if (display.value.indexOf(".") !== -1) {
+        decimalPointBtn.disabled = true;
+    } else {
+        decimalPointBtn.disabled = false;
+    }
 });
+
