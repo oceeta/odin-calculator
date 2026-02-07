@@ -21,22 +21,26 @@ function operate(operator, num1, num2) {
 }
 
 function add(a, b) {
-    return a + b;
+    return roundResult(a + b);
 }
 
 function subtract(a, b) {
-    return a - b;
+    return roundResult(a - b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return roundResult(a * b);
 }
 
 function divide(a, b) {
     if (b === 0) {
-        return NaN;
+        alert ("Don't try it!");
     }
-    return a / b;
+    return roundResult(a / b);
+}
+
+function roundResult(result) {
+    return Math.round(result * 1000)/1000;
 }
 
 buttons.addEventListener("click", function(e) {
