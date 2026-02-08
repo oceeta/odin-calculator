@@ -35,12 +35,20 @@ function multiply(a, b) {
 function divide(a, b) {
     if (b === 0) {
         alert ("Don't try it!");
+        return NaN;
     }
     return roundResult(a / b);
 }
 
 function roundResult(result) {
     return Math.round(result * 1000)/1000;
+}
+
+function displayResult() {
+    display.value = "";
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    display.value = operate(operator, num1, num2);
 }
 
 buttons.addEventListener("click", function(e) {
@@ -69,18 +77,12 @@ buttons.addEventListener("click", function(e) {
 
     if (num1 !== "" && operator !== "" && num2 !== "") {
         if (isOperator) {
-            display.value = "";
-            num1 = parseFloat(num1);
-            num2 = parseFloat(num2);
-            display.value = operate(operator, num1, num2);
+            displayResult();
             num1 = display.value;
             operator = e.target.textContent;
             num2 = "";
         } else if (isEqualsTo) {
-            display.value = "";
-            num1 = parseFloat(num1);
-            num2 = parseFloat(num2);
-            display.value = operate(operator, num1, num2);
+            displayResult();
             num1 = "";
             operator = "";
             num2 = "";
@@ -122,3 +124,67 @@ buttons.addEventListener("click", function(e) {
     }
 });
 
+// Keyboard support
+display.addEventListener("keydown", function(e) {
+    const isNumber = /[0-9]/.test(e.key);
+    const isDecimalPoint = e.key === ".";
+    const isOperator = e.key === "*" || e.key === "+" || e.key === "-" || e.key === "/";
+    const isBackspace = e.key === "Backspace";
+    const isEnter = e.key === "Enter";
+
+    if (!(isNumber || isDecimalPoint || isOperator || isBackspace || isEnter)) {
+        e.preventDefault();
+    }
+
+    if ((isNumber || isDecimalPoint) && operator === "") {
+        e.preventDefault();
+        num1 += e.key;
+        display.value = num1;
+    }
+
+    if (num1 !== "" && operator !== "" && num2 !== "") {
+        if (isOperator) {
+            displayResult();
+            num1 = display.value;
+            operator = e.key;
+            num2 = "";
+        } else if (isEnter) {
+            displayResult();
+            num1 = "";
+            operator = "";
+            num2 = "";
+        }
+    }
+
+    if (isOperator && num1 !== "") {
+        e.preventDefault();
+        operator = e.key;
+    }
+
+    if ((isNumber || isDecimalPoint) && num1 !== "" && operator !== "") {
+        e.preventDefault();
+        num2 += e.key;
+        display.value = num2;
+    }
+
+    if (isBackspace && operator !== "") {
+        e.preventDefault();
+        let num2ToArray = num2.split("");
+        num2ToArray.pop();
+        num2 = num2ToArray.join("");
+        display.value = num2;
+    } else if (isBackspace && operator === "") {
+        e.preventDefault();
+        let num1ToArray = num1.split("");
+        num1ToArray.pop();
+        num1 = num1ToArray.join("");
+        display.value = num1;
+    }
+
+    if (display.value.indexOf(".") !== -1) {
+        e.preventDefault();
+        decimalPointBtn.disabled = true;
+    } else {
+        decimalPointBtn.disabled = false;
+    }
+});
