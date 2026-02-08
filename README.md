@@ -3,7 +3,7 @@ This is a simple calculator project made for the purpose of completing the Found
 
 ## Features
 - Basic arithmetic: addition, multiplication, division, and subtraction.
-- Touch support
+- Mouse and touch support
 - Keyboard support
 
 ## Known Bugs and Missing Features
