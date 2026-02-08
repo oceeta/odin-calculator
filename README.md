@@ -4,4 +4,4 @@ This is a simple calculator project made for the purpose of completing the Found
 ## Known Bugs and Missing Features
 - The calculator does not allow users to input a negative first number. To simulate that, you have to either enter a zero first, followed by the minus sign
 
-- No keyboard support as of 07/02/2026
+- Added keyboard support (08/02/2026)
